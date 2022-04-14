@@ -1,0 +1,18 @@
+.mat-table {
+  width: 90%;
+  margin: 0 auto;
+
+  & .product-image-cell {
+    display: flex;
+    & .product-image {
+      height: 60px;
+      width: 60px;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+  }
+
+  & .toolbar-cell mat-icon:hover {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>{{ product.name }}</h1>
+<h3>Price {{ product.price | currency: "EUR" }}</h3>
+<div mat-dialog-content>
+  <img class="product-image" [src]="product.image" alt="Photo of a product" />
+  <p class="product-description">{{ product.description }}</p>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Items to add</mat-label>
+      <input
+        matInput
+        [formControl]="quantityControl"
+        required
+        type="number"
+        placeholder="Only {{ product.quantity }} items left!"
+      />
+      <mat-error *ngIf="quantityControl.getError('min')"
+        >You should add at least 1 product</mat-error
+      >
+      <mat-error *ngIf="quantityControl.getError('max')"
+        >Too many items</mat-error
+      >
+      <mat-error *ngIf="quantityControl.getError('required')"
+        >Field required</mat-error
+      >
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [disabled]="!quantityControl.valid" (click)="onOkClick()">
+    Ok
+  </button>
+</div>

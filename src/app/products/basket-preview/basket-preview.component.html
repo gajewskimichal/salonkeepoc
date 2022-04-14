@@ -1,0 +1,39 @@
+<div class="basket-items">
+  <ng-container
+    *ngIf="
+      productBasketService.productBasketItemsBehaviorSubject
+        | async as productBasketItems
+    "
+  >
+    <div class="basket-item" *ngFor="let pbi of productBasketItems">
+      <div class="basket-item-name">
+        {{ pbi.name }}
+      </div>
+      <div>{{ pbi.price }} x {{ pbi.quantity }}</div>
+      <div>
+        <mat-icon
+          class="basket-item-remove-icon"
+          (click)="removeItemFromBasket(pbi)"
+          >delete</mat-icon
+        >
+      </div>
+    </div>
+    <div class="basket-total">
+      <div class="basket-item">
+        <div>TOTAL</div>
+        <div>
+          {{ productBasketItems | totalPrice | currency: "EUR" }}
+        </div>
+      </div>
+      <div class="basket-checkout-bar">
+        <button
+          mat-button
+          [disabled]="productBasketItems?.length === 0"
+          (click)="goToCheckout()"
+        >
+          CHECKOUT
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

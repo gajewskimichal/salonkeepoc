@@ -1,0 +1,26 @@
+<div class="checkout-box">
+  <ng-container
+    *ngIf="
+      productBasketService.productBasketItemsBehaviorSubject
+        | async as productBasketItems
+    "
+  >
+    <div class="checkout-title">Yours order summary</div>
+    <div class="checkout-items">
+      <div class="checkout-product-item" *ngFor="let pbi of productBasketItems">
+        <div class="checkout-item-name">{{ pbi.name }}</div>
+        <div>{{ pbi.quantity }} x</div>
+        <div>{{ pbi.price | currency: "EUR" }}</div>
+      </div>
+    </div>
+    <div class="checkout-summary">
+      <div class="checkout-summary-title">TOTAL</div>
+      <div class="checkout-summary-total">
+        {{ productBasketItems | totalPrice | currency: "EUR" }}
+      </div>
+      <div class="checkout-confirm-button">
+        <button mat-button (click)="sendOrder()">CONFIRM ORDER</button>
+      </div>
+    </div>
+  </ng-container>
+</div>

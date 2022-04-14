@@ -1,0 +1,14 @@
+.mat-dialog-content {
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+
+  & .product-image {
+    width: 60%;
+    border-radius: 10px;
+  }
+
+  & .product-description{
+    margin-top: 1em;
+  }
+}
